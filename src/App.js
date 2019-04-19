@@ -33,6 +33,18 @@ class App extends Component {
     this.setState({ recettes })
   }
 
+  majRecette = (key, newRecette) => {
+    const recettes = { ...this.state.recettes }
+    recettes[key] = newRecette
+    this.setState({ recettes })
+  }
+
+  supprimerRecette = key => {
+    const recettes = { ...this.state.recettes }
+    recettes[key] = null
+    this.setState({ recettes })
+  }
+
   chargerExemple = () => this.setState({ recettes })
 
   render () {
@@ -47,7 +59,11 @@ class App extends Component {
           { cards }
         </div>
         <Admin
+          pseudo={this.state.pseudo}
+          recettes={this.state.recettes}
           ajouterRecette={this.ajouterRecette}
+          majRecette={this.majRecette}
+          supprimerRecette={this.supprimerRecette}
           chargerExemple={this.chargerExemple} />
       </div>
     )
